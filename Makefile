@@ -1,4 +1,4 @@
-REPO 		?= hamon
+REPO 		?= kesto
 
 .PHONY: rel stagedevrel deps
 
@@ -36,41 +36,41 @@ test: deps compile testclean
              exit `wc -l < $(TEST_LOG_FILE)`; \
         fi
 
-test_hamon:
+test_kesto:
 	./rebar compile skip_deps=true
 	./rebar eunit skip_deps=true
 	
-test_hamon_core:
+test_kesto_core:
 	./rebar compile skip_deps=true
-	./rebar eunit skip_deps=true app="hamon_core"
+	./rebar eunit skip_deps=true app="kesto_core"
 
-test_hamon_reciever:
+test_kesto_reciever:
 	./rebar compile skip_deps=true
-	./rebar eunit skip_deps=true app="hamon_reciever"
+	./rebar eunit skip_deps=true app="kesto_reciever"
 
-test_hamon_monitor:
+test_kesto_monitor:
 	./rebar compile skip_deps=true
-	./rebar eunit skip_deps=true app="hamon_monitor"	
+	./rebar eunit skip_deps=true app="kesto_monitor"	
 
-test_hamon_poller:
+test_kesto_poller:
 	./rebar compile skip_deps=true
-	./rebar eunit skip_deps=true app="hamon_poller"	
+	./rebar eunit skip_deps=true app="kesto_poller"	
 	
-test_hamon_scheduler:
+test_kesto_scheduler:
 	./rebar compile skip_deps=true
-	./rebar eunit skip_deps=true app="hamon_scheduler"	
+	./rebar eunit skip_deps=true app="kesto_scheduler"	
 
-test_hamon_job:
+test_kesto_job:
 	./rebar compile skip_deps=true
-	./rebar skip_deps=true eunit app=hamon_job
+	./rebar skip_deps=true eunit app=kesto_job
 
-test_hamon_control:
+test_kesto_control:
 	./rebar compile skip_deps=true
-	./rebar skip_deps=true eunit app="hamon_control"	
+	./rebar skip_deps=true eunit app="kesto_control"	
 
 rel_skip:
 	./rebar compile skip_deps=true
-	rm -rf rel/hamon
+	rm -rf rel/kesto
 	./rebar generate
 
 ##
@@ -79,7 +79,7 @@ rel_skip:
 rel: deps compile generate riaknostic-rel
 
 relclean:
-	rm -rf rel/hamon
+	rm -rf rel/kesto
 
 ##
 ## Riaknostic targets
@@ -88,9 +88,9 @@ riaknostic: deps
 	$(MAKE) -C deps/riaknostic -f Makefile
 
 riaknostic-rel: riaknostic
-	rm -rf rel/hamon/lib/riaknostic
-	mkdir -p rel/hamon/lib/riaknostic
-	cp -f deps/riaknostic/riaknostic rel/hamon/lib/riaknostic/
+	rm -rf rel/kesto/lib/riaknostic
+	mkdir -p rel/kesto/lib/riaknostic
+	cp -f deps/riaknostic/riaknostic rel/kesto/lib/riaknostic/
 
 
 ##
@@ -127,7 +127,7 @@ devclean: clean
 	rm -rf dev
 
 stage : rel
-	$(foreach dep,$(wildcard deps/*), rm -rf rel/hamon/lib/$(shell basename $(dep))* && ln -sf $(abspath $(dep)) rel/hamon/lib;)
+	$(foreach dep,$(wildcard deps/*), rm -rf rel/kesto/lib/$(shell basename $(dep))* && ln -sf $(abspath $(dep)) rel/kesto/lib;)
 
 ##
 ## Doc targets

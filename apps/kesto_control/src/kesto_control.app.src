@@ -1,0 +1,15 @@
+{application,kesto_control,
+ [
+  {description, ""},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  webmachine,
+                  riak_core,
+                  kesto_core
+                 ]},
+  {mod, { kesto_control_app, []}},
+  {env, []}
+ ]}.

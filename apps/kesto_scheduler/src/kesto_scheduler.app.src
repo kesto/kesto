@@ -1,0 +1,14 @@
+{application, kesto_scheduler,
+ [
+  {description, ""},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  riak_core,
+                  kesto_core
+                 ]},
+  {mod, { kesto_scheduler_app, []}},
+  {env, []}
+ ]}.

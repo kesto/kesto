@@ -1,0 +1,14 @@
+{application, kesto_reciever,
+ [
+  {description, ""},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  riak_core,
+                  kesto_core
+                 ]},
+  {mod, { kesto_reciever_app, []}},
+  {env, []}
+ ]}.

@@ -1,0 +1,42 @@
+
+<div class="sign_in">
+	<table>
+		<tr>
+			<td>
+				<div id="sign_in_header">
+					<span class="gui-button-msg">Sign in</span>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="gui-field gui-text">
+					<input id="sign_in_userid" class="gui-field-input gui-text" type="text" name="userid" />
+				</div>
+			</td>
+        </tr>
+        <tr>
+			<td>
+				<div class="gui-field gui-text">
+					<input id="sign_in_password" class="gui-field-input gui-text" type="password" name="password" />
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="gui-checkbox-wrapper">
+					<input id="sign_in_option" class="gui-checkbox" type="checkbox" name="option" checked="checked" />
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="button-column">
+					<a id="add-node-button" class="gui-point-button gui-text-bold right">
+                    	<span class="gui-button-msg">Sign in</span>
+                	</a>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>

@@ -1,5 +1,12 @@
-.eunit
-deps
-*.o
-*.beam
-*.plt
+deps/*
+rel/kesto
+rel/vars/dev*_vars.config
+dev/
+ebin/
+.eunit/
+
+.settings/
+.project
+.DS_Store
+._*
+
