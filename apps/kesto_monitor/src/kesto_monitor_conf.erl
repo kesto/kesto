@@ -124,7 +124,6 @@ delete(_) ->
 %% @spec get_list(atom()) -> ok | {error, atom()} | {error, Error}
 %% @doc Riakから監視項目リストを取得する。
 get_list(Type) when is_atom(Type) ->
-	{ok, Client} = riak:local_client(),
 	Map = fun(Obj,  _KeyData, _Arg) ->
 				  Conf = riak_object:get_value(Obj),
 				  case Conf#monitor_conf.type == Type of
@@ -134,7 +133,7 @@ get_list(Type) when is_atom(Type) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_MONITOR_CONF_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_MONITOR_CONF_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("監視項目リストを取得しました。 : ~p", [List]),
 			{ok, List};

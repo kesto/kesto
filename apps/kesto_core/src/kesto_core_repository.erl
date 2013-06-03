@@ -242,7 +242,7 @@ get_id_list(node, Enabled) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_REPOSITORY_BUCKET, [{map, {qfun, Map}, {Enabled}, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_REPOSITORY_BUCKET, [{map, {qfun, Map}, {Enabled}, true}]) of
 		{ok, List} ->
 			lager:debug("ファシリティIDリストを取得しました。 : ~p", [List]),
 			{ok, List};
@@ -269,7 +269,7 @@ get_id_list(scope, Enabled) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_REPOSITORY_BUCKET, [{map, {qfun, Map}, {Enabled}, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_REPOSITORY_BUCKET, [{map, {qfun, Map}, {Enabled}, true}]) of
 		{ok, List} ->
 			lager:debug("ファシリティIDリストを取得しました。 : ~p", [List]),
 			{ok, List};
@@ -299,7 +299,7 @@ get_list(node, Enabled) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_REPOSITORY_BUCKET, [{map, {qfun, Map}, {Enabled}, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_REPOSITORY_BUCKET, [{map, {qfun, Map}, {Enabled}, true}]) of
 		{ok, List} ->
 			lager:debug("ファシリティリストを取得しました。 : ~p", [List]),
 			{ok, List};
@@ -326,7 +326,7 @@ get_list(scope, Enabled) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_REPOSITORY_BUCKET, [{map, {qfun, Map}, {Enabled}, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_REPOSITORY_BUCKET, [{map, {qfun, Map}, {Enabled}, true}]) of
 		{ok, List} ->
 			lager:debug("ファシリティリストを取得しました。 : ~p", [List]),
 			{ok, List};

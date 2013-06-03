@@ -138,7 +138,6 @@ make_key(GroupID, JobID) ->
 %% @doc Riakからジョブ定義リストを取得する。
 -spec get_list(job_type()) -> {ok, [job_conf()]} | {error, atom()} | {error, term()}.
 get_list(Type) ->
-	{ok, Client} = riak:local_client(),
 	Map = fun(Obj,  _KeyData, _Arg) ->
 				  Conf = riak_object:get_value(Obj),
 				  case Conf#job_conf.type == Type of
@@ -148,7 +147,7 @@ get_list(Type) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_JOB_CONF_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_JOB_CONF_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("ジョブ定義リストを取得しました。 : ~p", [List]),
 			{ok, List};

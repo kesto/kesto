@@ -1,0 +1,19 @@
+{application, kesto_api,
+ [
+  {description, ""},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  riak_core,
+                  kesto_core,
+                  kesto_monitor,
+                  kesto_poller,
+                  kesto_reciever,
+                  kesto_scheduler,
+                  kesto_job
+                 ]},
+  {mod, { kesto_api_app, []}},
+  {env, []}
+ ]}.

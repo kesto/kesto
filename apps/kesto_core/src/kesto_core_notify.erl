@@ -132,7 +132,7 @@ get_list(Enabled) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_NOTIFY_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_NOTIFY_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("通知定義リストを取得しました。 : ~p", [List]),
 			{ok, List};

@@ -215,7 +215,7 @@ get_list() ->
 				  Event = riak_object:get_value(Obj),
 				  [Event]
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_EVENT_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_EVENT_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("イベントリストを取得しました。 : ~p", [List]),
 			{ok, List};

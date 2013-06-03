@@ -225,7 +225,7 @@ find_session(SessionID) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_AUTH_SESSION_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_AUTH_SESSION_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, []} ->
 			{error, notfound};
 		{ok, [Session | _Tail]} ->

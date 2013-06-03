@@ -126,7 +126,7 @@ get_list(State) ->
 					  false -> []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_JOB_SESSION_OPERATION_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_JOB_SESSION_OPERATION_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("セッションオペレーション情報リストを取得しました。 : ~p", [List]),
 			{ok, 
@@ -150,7 +150,7 @@ get_list(SessionID, State) ->
 					  false -> []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_JOB_SESSION_OPERATION_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_JOB_SESSION_OPERATION_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("セッションオペレーション情報リストを取得しました。 : ~p", [List]),
 			{ok, 
@@ -176,7 +176,7 @@ get_list(SessionID, GroupID, JobID, State) when is_atom(State) ->
 					  false -> []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_JOB_SESSION_OPERATION_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_JOB_SESSION_OPERATION_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("セッションオペレーション情報リストを取得しました。 : ~p", [List]),
 			{ok, 
@@ -203,7 +203,7 @@ get_list(SessionID, GroupID, JobID, FacilityID, State) ->
 					  false -> []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_JOB_SESSION_OPERATION_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_JOB_SESSION_OPERATION_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("セッションオペレーション情報リストを取得しました。 : ~p", [List]),
 			{ok, 

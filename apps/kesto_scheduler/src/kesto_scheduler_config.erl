@@ -57,7 +57,7 @@ get_kesto_scheduler_env(Key) ->
 -ifdef(TEST).
 -include_lib("eunit/include/eunit.hrl").
 
-riak_core_config_test_() ->
+kesto_scheduler_config_test_() ->
 	{ setup,
 	  fun setup/0,
 	  fun cleanup/1,
@@ -78,7 +78,7 @@ check_cycle_test_case() ->
 
 check_offset_test_case() ->
 	application:set_env(kesto_scheduler, check_offset, 30000),
-	?assertEqual(3000, check_offset()).
+	?assertEqual(30000, check_offset()).
 
 setup() ->   
 	application:load(kesto_scheduler).

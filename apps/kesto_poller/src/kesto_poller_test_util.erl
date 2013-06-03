@@ -23,7 +23,7 @@
 
 %% @doc utilities for test scripts
 
--module(kesto_monitor_test_util).
+-module(kesto_poller_test_util).
 
 -ifdef(TEST).
 

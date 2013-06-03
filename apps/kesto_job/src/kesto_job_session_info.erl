@@ -159,7 +159,6 @@ get_list(SessionID,  GroupID, JobID, State, Record) ->
 			   job_session | job_session_job | job_session_node | all) -> 
 		  {ok, [job_session_info()]} | {error, atom()} | {error, term()}.
 get_list(SessionID, GroupID, JobID, FacilityID, State, Record) ->
-	{ok, Client} = riak:local_client(),
 	Map = fun(Obj,  _KeyData, _Arg) ->
 				  SessionInfo = riak_object:get_value(Obj),
 				  case (Record == all) or (is_record(SessionInfo, Record)) of
@@ -187,7 +186,7 @@ get_list(SessionID, GroupID, JobID, FacilityID, State, Record) ->
 					  false -> []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_JOB_SESSION_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_JOB_SESSION_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("セッションジョブ情報リストを取得しました。 : ~p", [List]),
 			{ok, List};

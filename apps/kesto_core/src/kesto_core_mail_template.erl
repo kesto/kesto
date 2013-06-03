@@ -125,7 +125,7 @@ get_list() ->
 				  Conf = riak_object:get_value(Obj),
 				  [Conf]
 		  end,
-	case Client:mapred_bucket(?KESTO_CORE_MAIL_TEMPLATE_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_CORE_MAIL_TEMPLATE_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("メールテンプレート定義リストを取得しました。 : ~p", [List]),
 			{ok, List};

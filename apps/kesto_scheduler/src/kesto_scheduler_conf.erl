@@ -144,7 +144,6 @@ delete(_) ->
 %% @spec get_list(atom()) -> ok | {error, atom()} | {error, Error}
 %% @doc Riakからスケジュール定義リストを取得する。
 get_list(Type) when is_atom(Type) ->
-	{ok, Client} = riak:local_client(),
 	Map = fun(Obj,  _KeyData, _Arg) ->
 				  Conf = riak_object:get_value(Obj),
 				  case Conf#scheduler_conf.type == Type of
@@ -154,7 +153,7 @@ get_list(Type) when is_atom(Type) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_SCHEDULER_CONF_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_SCHEDULER_CONF_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("スケジュール定義リストを取得しました。 : ~p", [List]),
 			{ok, List};
@@ -168,7 +167,6 @@ get_list(_) ->
 %% @spec get_id_list(atom()) -> {ok, [#scheduler_conf]} | {error, atom()} | {error, Error}
 %% @doc Riakからスケジュール定義IDリストを取得する。
 get_id_list(Type) when is_atom(Type) ->
-	{ok, Client} = riak:local_client(),
 	Map = fun(Obj,  _KeyData, _Arg) ->
 				  Conf = riak_object:get_value(Obj),
 				  case Conf#scheduler_conf.type == Type of
@@ -183,7 +181,7 @@ get_id_list(Type) when is_atom(Type) ->
 						  []
 				  end
 		  end,
-	case Client:mapred_bucket(?KESTO_SCHEDULER_CONF_BUCKET, [{map, {qfun, Map}, none, true}]) of
+	case riak_kv_mrc_pipe:mapred(?KESTO_SCHEDULER_CONF_BUCKET, [{map, {qfun, Map}, none, true}]) of
 		{ok, List} ->
 			lager:debug("スケジュール定義リストを取得しました。 : ~p", [List]),
 			{ok, List};
